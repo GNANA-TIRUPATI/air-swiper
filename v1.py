@@ -19,7 +19,20 @@ if sys.platform == "win32":
 # CONFIGURATION
 # ============================================================
 
-CAMERA_INDEX = 0
+# Default to 1 (physical webcam instead of virtual cameras like DroidCam)
+CAMERA_INDEX = 1
+
+# Allow passing camera index via command line, e.g. 'python v1.py 0' or 'python v1.py --camera=1'
+for arg in sys.argv[1:]:
+    if arg.isdigit():
+        CAMERA_INDEX = int(arg)
+        break
+    elif arg.startswith("--camera="):
+        try:
+            CAMERA_INDEX = int(arg.split("=")[1])
+            break
+        except ValueError:
+            pass
 
 MODEL_PATH = Path(__file__).parent / "hand_landmarker.task"
 
@@ -1051,6 +1064,10 @@ print()
 
 print(
     "Physical RIGHT HAND mode"
+)
+
+print(
+    f"Camera device index: {CAMERA_INDEX}"
 )
 
 print()

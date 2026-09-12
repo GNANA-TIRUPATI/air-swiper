@@ -83,18 +83,23 @@ pip install -r requirements.txt
 ### 4. Run the Application
 
 ```bash
+# Run with default webcam (index 1)
 python v1.py
+
+# Or switch camera by index (e.g. 0 for DroidCam or 2 for external webcam)
+python v1.py 0
+python v1.py 1
 ```
 
 ---
 
 ## ⚙️ Configuration
 
-You can easily fine-tune gesture sensitivity by editing the constants near the top of [`v1.py`](v1.py):
+You can easily fine-tune gesture sensitivity by editing the constants near the top of [`v1.py`](v1.py) or passing the camera index as a command argument:
 
 | Variable | Default | Description |
 | :--- | :---: | :--- |
-| `CAMERA_INDEX` | `0` | Camera device index (change to `1`, `2` for external webcams). |
+| `CAMERA_INDEX` | `1` | Camera device index (`1` for physical webcam, `0` for DroidCam / virtual cams). |
 | `ACTIVATION_HOLD_TIME` | `0.7` | Seconds to hold right palm to activate. |
 | `SWIPE_DISTANCE` | `0.035` | Minimum vertical movement required. |
 | `SWIPE_TIME` | `0.20` | Movement detection time window in seconds. |
