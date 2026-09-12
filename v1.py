@@ -1103,6 +1103,8 @@ with HandLandmarker.create_from_options(
     timestamp_ms = 0
 
 
+    failed_frames = 0
+
     while True:
 
         # ====================================================
@@ -1113,14 +1115,18 @@ with HandLandmarker.create_from_options(
             cap.read()
         )
 
-
         if not success:
+            failed_frames += 1
+            if failed_frames > 15:
+                print()
+                print("ERROR: Could not read camera.")
+                print("If another application (or another instance of this script) is using the webcam, please close it and try again.")
+                print()
+                break
+            time.sleep(0.05)
+            continue
 
-            print(
-                "ERROR: Could not read camera."
-            )
-
-            break
+        failed_frames = 0
 
 
         # ====================================================
