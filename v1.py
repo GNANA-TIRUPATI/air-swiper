@@ -1,9 +1,18 @@
+import sys
 import cv2
 import mediapipe as mp
 import pyautogui
 import time
 from pathlib import Path
 from collections import deque
+
+# Configure UTF-8 encoding for Windows terminals
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 
 # ============================================================
